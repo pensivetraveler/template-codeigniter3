@@ -51,4 +51,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = TRUE;
+
+/*
+|--------------------------------------------------------------------------
+| Custom Routes
+|--------------------------------------------------------------------------
+*/
+include_once(APPPATH.'config/extra/extra_routes.php');
