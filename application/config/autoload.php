@@ -58,9 +58,7 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array(
-    'email', 'session', 'encrypt', 'encryption'
-);
+$autoload['libraries'] = array('email', 'session', 'encrypt', 'encryption', 'database', 'user_agent', 'Authorization_Token');
 
 /*
 | -------------------------------------------------------------------
@@ -91,7 +89,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array();
+$autoload['helper'] = array('common', 'url', 'file', 'function', 'cookie');
 
 /*
 | -------------------------------------------------------------------
@@ -105,7 +103,11 @@ $autoload['helper'] = array();
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload['config'] = array();
+$autoload_config_list = array();
+foreach (glob(APPPATH . 'config/extra/extra_*.php') as $file) {
+    $autoload_config_list[] = $file;
+}
+$autoload['config'] = $autoload_config_list;
 
 /*
 | -------------------------------------------------------------------
