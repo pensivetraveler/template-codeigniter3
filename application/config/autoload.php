@@ -135,3 +135,12 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array();
+
+/*
+| -------------------------------------------------------------------
+|  Custom Auto Load
+| -------------------------------------------------------------------
+ */
+foreach (glob(APPPATH . 'config/extra/extra_*.php') as $file) {
+    require_once $file;
+}
