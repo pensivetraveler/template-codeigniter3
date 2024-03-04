@@ -40,14 +40,14 @@ class AuthorizationToken
     protected $token_expire_time;
 
 
-    public function __construct()
+    public function __construct($config = 'jwt')
     {
         $this->CI =& get_instance();
 
         /**
          * jwt config file load
          */
-        $this->CI->load->config('extra/jwt_config');
+        $this->CI->load->config($config);
 
         /**
          * Load Config Items Values
