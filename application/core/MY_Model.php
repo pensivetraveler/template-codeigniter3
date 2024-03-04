@@ -3,12 +3,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Model extends CI_Model
 {
+    private $notNullList;
+    private $nullList;
+    private $strList;
+    private $intList;
+
     function __construct()
     {
         parent::__construct();
         $this->load->database();
+        $this->notNullList = [];
+        $this->nullList = [];
+        $this->strList = [];
+        $this->intList = [];
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Query 직접 작성
+    |--------------------------------------------------------------------------
+    */
     //결과 값이 하나 일 때
     function queryRow($sql,$array)
     {
@@ -94,9 +108,11 @@ class MY_Model extends CI_Model
         return $result;
     }
 
-    /**
-     * query builder
-     */
+    /*
+    |--------------------------------------------------------------------------
+    | Query 빌더
+    |--------------------------------------------------------------------------
+    */
     public function limit($data)
     {
         if(count($data) > 0){
@@ -146,7 +162,7 @@ class MY_Model extends CI_Model
         $result = $this->db->get($table);
 
         if($result !== FALSE && $result->num_rows() > 0){
-            return $result->row()->cnt;
+            return (int)$result->row()->cnt;
         }else{
             return 0;
         }
@@ -177,7 +193,7 @@ class MY_Model extends CI_Model
             ->where($where);
 
         if($this->db->update($table)){
-            return $this->afterTrans(false, true);
+            return $this->afterTrans(false, $returnBool);
         }else{
             return $this->db->error();
         }
@@ -189,7 +205,7 @@ class MY_Model extends CI_Model
 
         $this->db->delete($table, $where);
 
-        return $this->afterTrans(false, true);
+        return $this->afterTrans(false, $returnBool);
     }
 
     public function afterTrans($insert = true, $returnBool = false)
