@@ -89,6 +89,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 | Custom Constants
 | -------------------------------------------------------------------------
 */
-require_once APPPATH . 'config/extra/custom_http_code.php';
-require_once APPPATH . 'config/extra/custom_status_code.php';
-require_once APPPATH . 'config/extra/custom_constants.php';
+foreach (glob(APPPATH . 'config/extra/*_constants.php') as $file) {
+    require_once $file;
+}
