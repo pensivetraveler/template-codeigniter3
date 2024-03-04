@@ -17,7 +17,7 @@ require_once APPPATH . 'third_party/php-jwt/SignatureInvalidException.php';
 
 use \Firebase\JWT\JWT;
 
-class Authorization_Token
+class AuthorizationToken
 {
     /**
      * Token Key
@@ -47,7 +47,7 @@ class Authorization_Token
         /**
          * jwt config file load
          */
-        $this->CI->load->config('extra/jwt');
+        $this->CI->load->config('extra/jwt_config');
 
         /**
          * Load Config Items Values
