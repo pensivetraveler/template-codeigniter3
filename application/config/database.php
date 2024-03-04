@@ -73,52 +73,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $active_group = 'default';
 $query_builder = TRUE;
 
-if(ENVIRONMENT == 'development') {
-    $db['default'] = array(
-        'dsn'	   => '',
-        'hostname' => 'localhost',
-        'port'     => '3306',
-        'username' => '',
-        'password' => '',
-        'database' => '',
-        'dbdriver' => 'mysqli',
-        'dbprefix' => 'tbl_',
-        'pconnect' => FALSE,
-        'db_debug' => (ENVIRONMENT !== 'production'),
-        'cache_on' => FALSE,
-        'cachedir' => '',
-        'char_set' => 'utf8',
-        'dbcollat' => 'utf8_general_ci',
-        'swap_pre' => '',
-        'autoinit' => TRUE,
-        'encrypt' => FALSE,
-        'compress' => FALSE,
-        'stricton' => FALSE,
-        'failover' => array(),
-        'save_queries' => TRUE
-    );
-}else{
-    $db['default'] = array(
-        'dsn'	   => '',
-        'hostname' => 'localhost',
-        'port'     => '3306',
-        'username' => '',
-        'password' => '',
-        'database' => '',
-        'dbdriver' => 'mysqli',
-        'dbprefix' => 'tbl_',
-        'pconnect' => FALSE,
-        'db_debug' => (ENVIRONMENT !== 'production'),
-        'cache_on' => FALSE,
-        'cachedir' => '',
-        'char_set' => 'utf8',
-        'dbcollat' => 'utf8_general_ci',
-        'swap_pre' => '',
-        'autoinit' => TRUE,
-        'encrypt' => FALSE,
-        'compress' => FALSE,
-        'stricton' => FALSE,
-        'failover' => array(),
-        'save_queries' => TRUE
-    );
-}
+$db['default'] = array(
+    'dsn'	   => '',
+    'hostname' => getenv('DB_HOST'),
+    'port'     => getenv('DB_PORT'),
+    'username' => getenv('DB_USERNAME'),
+    'password' => getenv('DB_PASSWORD'),
+    'database' => getenv('DB_DATABASE'),
+    'dbdriver' => 'mysqli',
+    'dbprefix' => getenv('DB_PREFIX'),
+    'pconnect' => FALSE,
+    'db_debug' => (ENVIRONMENT !== 'production'),
+    'cache_on' => FALSE,
+    'cachedir' => '',
+    'char_set' => getenv('DB_CHARSET'),
+    'dbcollat' => getenv('DB_COLLATION'),
+    'swap_pre' => '',
+    'autoinit' => TRUE,
+    'encrypt' => FALSE,
+    'compress' => FALSE,
+    'stricton' => FALSE,
+    'failover' => array(),
+    'save_queries' => TRUE,
+);
