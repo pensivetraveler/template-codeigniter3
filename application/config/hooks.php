@@ -20,6 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $hook['pre_system'] = function() {
     $dotenv = new Symfony\Component\Dotenv\Dotenv();
+    $dotenv->usePutenv();
     $dotenv->load(FCPATH.'.env.'.getenv('CI_ENV'));
 };
 
