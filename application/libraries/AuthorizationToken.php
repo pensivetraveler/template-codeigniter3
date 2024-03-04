@@ -40,8 +40,10 @@ class AuthorizationToken
     protected $token_expire_time;
 
 
-    public function __construct($config = 'jwt')
+    public function __construct($params)
     {
+        $config = isset($params['config']) && !empty($params['config'])?$params['config']:'jwt';
+
         $this->CI =& get_instance();
 
         /**
