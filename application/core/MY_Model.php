@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class MY_Model extends CI_Model
 {
-    private $notNullList;
-    private $nullList;
-    private $strList;
-    private $intList;
+    protected $notNullList;
+    protected $nullList;
+    protected $strList;
+    protected $intList;
 
     function __construct()
     {
@@ -178,9 +178,7 @@ class MY_Model extends CI_Model
         if($this->db->insert($table)){
             return $this->afterTrans(true, $returnBool);
         }else{
-            echo $this->db->error();
-            exit;
-//            return $this->db->error();
+            return $this->db->error();
         }
     }
 
