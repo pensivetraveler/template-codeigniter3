@@ -103,11 +103,9 @@ $autoload['helper'] = array('common', 'url', 'file', 'function', 'cookie');
 | config files.  Otherwise, leave it blank.
 |
 */
-$autoload_config_list = array();
-foreach (glob(APPPATH . 'config/extra/extra_*.php') as $file) {
-    $autoload_config_list[] = $file;
+foreach (glob(APPPATH . 'config/extra/*_config.php') as $file) {
+    $autoload['config'][] = 'extra/' . substr(basename($file),0,strpos(basename($file),'.'));
 }
-$autoload['config'] = $autoload_config_list;
 
 /*
 | -------------------------------------------------------------------
@@ -137,12 +135,3 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array();
-
-/*
-| -------------------------------------------------------------------
-|  Custom Auto Load
-| -------------------------------------------------------------------
- */
-foreach (glob(APPPATH . 'config/extra/extra_*.php') as $file) {
-    require_once $file;
-}
