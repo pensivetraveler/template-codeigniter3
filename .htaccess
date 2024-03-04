@@ -1,0 +1,22 @@
+<IfModule mod_env.c>
+    SetEnv CI_ENV development
+</IfModule>
+<IfModule mod_php5.c>
+    #Session timeout
+    php_value session.cookie_lifetime 43200
+    php_value session.gc_maxlifetime 43200
+</IfModule>
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks -Indexes
+    RewriteEngine On
+    RewriteBase /
+    DirectoryIndex index.php
+    RewriteCond $1 !^(index\.php|images|robots\.txt|css|docs|js|system)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+    <Files ~ "\.(env|json|config.js|md|gitignore|gitattributes|lock)$">
+        Order allow,deny
+        Deny from all
+    </Files>
+</IfModule>
